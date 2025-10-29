@@ -1,0 +1,17 @@
+<h1>Your Cart</h1> <!--heading-->
+
+<% if (cart.length === 0) { %> <!--checks if cart is empty-->
+  <p>Your cart is empty.</p> <!--shows empty cart-->
+<% } else { %> <!--block-->
+  <ul>
+    <% cart.forEach(item => { %><!--loops through items-->
+      <li>
+        <strong><%= item.productName %></strong><br> <!--total cost of items-->
+        €<%= item.price.toFixed(2) %> × <%= item.quantity %> = €<%= (item.price * item.quantity).toFixed(2) %> <!-- product, quantity and subtotal-->
+      </li>
+    <% }) %>
+  </ul>
+  <p><strong>Total: €<%= cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2) %></strong></p>
+<% } %>
+
+<a href="/product">Continue Shopping</a>
